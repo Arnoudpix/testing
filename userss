@@ -1,0 +1,144 @@
+# testing
+
+<?php
+
+namespace UsersBundle\Services; 
+
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
+class UsersService
+{
+    private $container;
+    private $em;
+        
+    /**
+     * 
+     * @param \Doctrine\ORM\EntityManager $entityManager
+     * @param $container
+     */
+    public function __construct(EntityManager $entityManager = NULL,  ContainerInterface $container = NULL)
+    {
+        $this->em = $entityManager;
+        $this->container = $container;
+    }
+    ####
+//    public function __toString() {
+//        return $this->em;
+//    }
+    #### 
+
+    /***********************************************************************************************************
+     * Create Functions
+     ***********************************************************************************************************/
+    Public function CreateRole($nombre = NULL)
+    {
+    ###
+        $role = new \UsersBundle\Entity\Roles();
+        $role->setRole($nombre);
+      
+   
+         
+         
+    ### new kijken of dit werkt!!### 
+    $result = new \UsersBundle\Entity\Roles();    
+    $result = add_role(
+        'ROLE_',
+        __( 'ROLE_' ),
+         array(
+               'read'         => true,  // true allows this capability
+               'edit_posts'   => true,
+               'delete_posts' => false, // Use false to explicitly deny
+    )
+    );
+    if ( null !== $result ) {
+       echo 'Yay! New role created!';
+    }
+    else {
+        echo 'Oh... the ROLE_"X" role already exists.';
+    }
+     ### new kijken of dit werkte!!###   
+       
+////     $v = $this->get('validator');
+////
+////        $role = new Role();
+////        $role->setName('jm');
+////        $role->setTest('test');
+////        $e = $v->validate($role);
+////        echo '=== 1 ===';
+////        var_dump($e);
+////        if (count($e) == 0) {
+////            $persist = $em->persist($role);
+//        }
+    ###               
+        $role->setDescription = NULL;
+           
+        echo $role;  
+        return $role;
+    ###  
+    }
+   
+     /**
+     * Determine if the user has the given role.
+     * @param  mixed $role
+     * @return boolean
+     */
+    public function hasRole($role)
+    {
+        if (is_string($role)) {
+            return $this->roles->contains('nameeee', $role);
+        }
+            
+        return !! $role->intersect($this->roles)->count();
+        
+    }
+       
+//       $role->setRole('ROLE_'.$nombre);
+//        $role++;
+//        echo $role; //incremente
+             
+    ##
+//        $i = 1;
+//        $i++;
+//        echo $i; //will print '2'
+        ##
+//          $role = md5('Rmicrotime().rand());
+//          $role->getRole();
+//          echo uniqid();
+    
+    /***********************************************************************************************************
+     * Read Functions
+     ***********************************************************************************************************/
+
+    /***********************************************************************************************************
+     * Update Functions
+     ***********************************************************************************************************/
+
+    /***********************************************************************************************************
+     * Delete Functions
+     ***********************************************************************************************************/
+    public function removeCreateRole(Nombre $nombre)
+    {
+        $this->em->remove($nombre);
+        $this->em->flush();
+    }
+    /***********************************************************************************************************
+     * Private Functions
+     ***********************************************************************************************************/
+
+    
+    
+    }
+   
+//    $class = new UsersService('Hello');
+//    echo $class;
+    
+    
+    
+  echo "A simple functie<br>";
+  echo "call function ... ";
+  echo nombre;
+  echo " ....";
+  
+
